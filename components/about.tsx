@@ -31,8 +31,14 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="relative h-[400px] rounded-lg overflow-hidden">
-              <Image src="/placeholder.svg?height=400&width=500" alt="Bisrat Abrham" fill className="object-cover" />
+            <div className="relative h-[500px] w-full max-w-[400px] mx-auto rounded-lg overflow-hidden border border-primary/10 shadow-xl">
+              <Image
+                src="/bisrat-abrham.jpg"
+                alt="Bisrat Abrham"
+                fill
+                className="object-cover object-top"
+                priority
+              />
             </div>
           </motion.div>
 
