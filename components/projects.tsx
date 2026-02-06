@@ -18,6 +18,7 @@ const PROJECT_IMAGES = {
   comfy: "/comfyJournal.png",
   auth: "/authJS.png",
   lersha: "/lersha.jpg",
+  kenis: "/kenis.png",
 }
 
 const projects = [
@@ -80,6 +81,27 @@ const projects = [
   },
   {
     id: 4,
+    title: "Keni's Design",
+    type: "Multi-platform + Telegram Automation",
+    description: "Telegram-integrated Order acceptance system with deep platform integration.",
+    features: [
+      "Register via web app inside Telegram",
+      "multi-form  order form",
+      "Authentication using jwt and telegram",
+      "notification sent to users based on interaction , action taken by the admin and order status",
+    ],
+    image: PROJECT_IMAGES.kenis,
+    objectFit: "contain" as const,
+    tags: ["React", "Node.js", "TypeScript", "MongoDB", "Telegraf", "Webhooks"],
+    liveUrl: "https://t.me/kofiDesign_bot",
+    liveLabel: "Telegram Bot",
+    githubUrl: "https://kofi-design-admin.vercel.app",
+    githubLabel: "Admin Portal",
+    sampleEmail: "kofiG@example.com",
+    samplePassword: "securepassword123",
+  },
+  {
+    id: 5,
     title: "BookCompass",
     type: "Enterprise-grade Backend",
     description: "Multi-tenant online book marketplace with complex backend logic.",
@@ -95,7 +117,7 @@ const projects = [
     githubUrl: "https://github.com/bsrBe/BookCompass",
   },
   {
-    id: 5,
+    id: 6,
     title: "Proforma Invoice System",
     type: "Desktop Application",
     description: "Offline-first desktop system for generating and managing proforma invoices.",
@@ -111,7 +133,7 @@ const projects = [
     githubUrl: "https://github.com/bsrBe/Proforma.git",
   },
   {
-    id: 6,
+    id: 7,
     title: "Comfy Journal",
     type: "Personal Mood & Diary Platform",
     description: "User-centric app for mood tracking and personal journaling with real-time sync.",
@@ -126,7 +148,7 @@ const projects = [
     githubUrl: "#",
   },
   {
-    id: 7,
+    id: 8,
     title: "JS Auth Starter",
     type: "Reusable Auth Boilerplate",
     description: "A fully built backend starter with advanced security and RBAC.",
@@ -141,7 +163,7 @@ const projects = [
     githubUrl: "#",
   },
   {
-    id: 8,
+    id: 9,
     title: "Lersha Auth Service",
     type: "Internal Authorization Service",
     isPrivate: true,
