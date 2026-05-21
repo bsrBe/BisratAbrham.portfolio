@@ -21,7 +21,7 @@ const PROJECT_IMAGES = {
   kenis: "/kenis.png",
 }
 
-const dashenProjects = [
+const projects = [
   {
     id: 1,
     title: "Dashen Branch Portal",
@@ -48,6 +48,7 @@ const dashenProjects = [
       "Supported 700+ branches across Ethiopia",
       "Served millions of users",
     ],
+    group: "fintech",
   },
   {
     id: 2,
@@ -74,6 +75,7 @@ const dashenProjects = [
       "Integrated with central banking systems",
       "Developed fund transfer orchestration",
     ],
+    group: "fintech",
   },
   {
     id: 3,
@@ -102,10 +104,8 @@ const dashenProjects = [
       "Implemented secure payment processing",
       "Ensured banking compliance & security",
     ],
+    group: "fintech",
   },
-]
-
-const otherProjects = [
   {
     id: 4,
     title: "Scholarshub",
@@ -242,7 +242,7 @@ const otherProjects = [
   },
 ]
 
-function ProjectCard({ project }: { project: (typeof dashenProjects)[0] | (typeof otherProjects)[0] }) {
+function ProjectCard({ project }: { project: (typeof projects)[0] }) {
   return (
     <Card className="h-full overflow-hidden group border-primary/10 hover:border-primary/30 transition-all duration-300 flex flex-col">
       <div className="relative h-48 overflow-hidden">
@@ -342,6 +342,9 @@ function ProjectCard({ project }: { project: (typeof dashenProjects)[0] | (typeo
 }
 
 export default function Projects() {
+  const fintechProjects = projects.filter((p) => p.group === "fintech")
+  const otherProjects = projects.filter((p) => !p.group)
+
   return (
     <section id="projects" className="py-20 bg-muted/30">
       <div className="container">
@@ -359,56 +362,42 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        {/* Dashen Enterprise Ecosystem Group */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-16"
-        >
-          <div className="mb-6 pl-4 border-l-4 border-primary">
-            <h3 className="text-2xl font-bold mb-2">Dashen Bank Enterprise Ecosystem</h3>
-            <p className="text-muted-foreground">
-              Led backend architecture across multiple financial systems serving 700+ branches and millions of users across Ethiopia.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {dashenProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="border-l-4 border-primary/50 pl-0"
-              >
-                <ProjectCard project={project} />
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* FinTech Dashen Bank Group with top line */}
+          {fintechProjects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className={cn(
+                index === 0 && "relative"
+              )}
+            >
+              {index === 0 && (
+                <div className="absolute -top-8 left-0 right-0 flex items-center gap-3">
+                  <div className="flex-1 h-0.5 bg-primary"></div>
+                  <span className="text-sm font-semibold text-primary whitespace-nowrap">FinTech Dashen Bank</span>
+                  <div className="flex-1 h-0.5 bg-primary"></div>
+                </div>
+              )}
+              <ProjectCard project={project} />
+            </motion.div>
+          ))}
 
-        {/* Other Projects */}
-        <div>
-          <div className="mb-8">
-            <h3 className="text-2xl font-bold mb-2">Other Projects</h3>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {otherProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <ProjectCard project={project} />
-              </motion.div>
-            ))}
-          </div>
+          {/* Other Projects */}
+          {otherProjects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: (fintechProjects.length + index) * 0.1 }}
+            >
+              <ProjectCard project={project} />
+            </motion.div>
+          ))}
         </div>
 
         <div className="text-center mt-12">
