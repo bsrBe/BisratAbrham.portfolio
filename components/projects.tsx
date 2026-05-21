@@ -56,7 +56,7 @@ const projects = [
     image: PROJECT_IMAGES.scholarshub,
     tags: ["React", "Node.js", "Express", "MongoDB", "JWT Auth", "Nodemailer"],
     liveUrl: "https://scholarshubglobal.com",
-    githubUrl: "#",
+    githubUrl: "https://github.com/bsrBe/scholarsHub",
   },
   {
     id: 3,
@@ -113,7 +113,7 @@ const projects = [
     ],
     image: PROJECT_IMAGES.bookcompass,
     tags: ["Node.js", "Express", "TypeScript", "MongoDB", "Chapa Payments", "Geo-API"],
-    liveUrl: "#",
+    liveUrl: "https://bookcompass.onrender.com/api-docs",
     githubUrl: "https://github.com/bsrBe/BookCompass",
   },
   {
@@ -129,7 +129,7 @@ const projects = [
     ],
     image: PROJECT_IMAGES.proforma,
     tags: ["Electron.js", "React", "Express", "SQLite"],
-    liveUrl: "#",
+    liveUrl: "https://github.com/bsrBe/Proforma/releases/tag/Versioned",
     githubUrl: "https://github.com/bsrBe/Proforma.git",
   },
   {
@@ -145,7 +145,7 @@ const projects = [
     image: PROJECT_IMAGES.comfy,
     tags: ["Next.js", "Node.js", "Express", "MongoDB"],
     liveUrl: "http://bit.ly/3EHfdTY",
-    githubUrl: "#",
+    githubUrl: "https://github.com/bsrBe/Vent",
   },
   {
     id: 8,
@@ -175,8 +175,7 @@ const projects = [
     ],
     image: PROJECT_IMAGES.lersha,
     tags: ["Node.js", "Express", "RBAC", "Redis", "MongoDB"],
-    liveUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/bsrBe/Mern-Auth",
   },
 ]
 
