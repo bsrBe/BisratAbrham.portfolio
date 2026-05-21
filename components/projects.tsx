@@ -159,8 +159,8 @@ const projects = [
     ],
     image: PROJECT_IMAGES.auth,
     tags: ["Node.js", "Express", "JWT", "bcrypt", "RBAC"],
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "https://github.com/bsrBe/Mern-Auth",
+    githubUrl: "https://github.com/bsrBe/Mern-Auth",
   },
   {
     id: 9,
@@ -175,7 +175,6 @@ const projects = [
     ],
     image: PROJECT_IMAGES.lersha,
     tags: ["Node.js", "Express", "RBAC", "Redis", "MongoDB"],
-    githubUrl: "https://github.com/bsrBe/Mern-Auth",
   },
 ]
 
