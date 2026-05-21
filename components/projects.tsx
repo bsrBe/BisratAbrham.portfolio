@@ -24,26 +24,87 @@ const PROJECT_IMAGES = {
 const projects = [
   {
     id: 1,
-    title: "Dashen Super App",
-    type: "Fintech Super App",
+    title: "Dashen Branch Portal",
+    type: "Enterprise Banking Portal",
     isPrivate: true,
-    description: "A professional digital banking platform supporting secure onboarding, digital wallets, and QR payments.",
+    description: "National branch management system serving 700+ branches and millions of users across Ethiopia.",
     features: [
-      "Secure onboarding & authentication",
-      "Digital wallet: top-up, transfer, payments",
-      "Bank account linking & mini statements",
-      "QR payments & merchant services",
-      "Real-time support chat & Push notifications",
-      "Admin dashboard with KYC & analytics",
+      "Comprehensive authentication system & logging",
+      "Customer action workflows & transaction processing",
+      "Branch operations management",
+      "Real-time reporting & analytics",
+      "Enterprise security & audit trails",
     ],
     image: PROJECT_IMAGES.dashen,
     objectFit: "contain" as const,
     tags: ["Node.js", "Express", "TypeScript", "MongoDB", "Redis", "JWT Auth"],
     liveUrl: "#",
     githubUrl: "#",
+    roles: [
+      "Backend Developer - Core Infrastructure",
+      "Designed & implemented comprehensive authentication system",
+      "Built logging & audit trail infrastructure",
+      "Developed customer action processing workflows",
+      "Supported 700+ branches across Ethiopia",
+      "Served millions of users",
+    ],
   },
   {
     id: 2,
+    title: "Dashen Paperless Services",
+    type: "Enterprise Automation System",
+    isPrivate: true,
+    description: "Automated ticketing and fund transfer system with central system integration.",
+    features: [
+      "Automated ticket management & routing",
+      "Fund transfer orchestration & reconciliation",
+      "Central system configuration alignment",
+      "Real-time transaction processing",
+      "Compliance & audit logging",
+    ],
+    image: PROJECT_IMAGES.dashen,
+    objectFit: "contain" as const,
+    tags: ["Node.js", "Express", "TypeScript", "MongoDB", "Redis", "Message Queue"],
+    liveUrl: "#",
+    githubUrl: "#",
+    roles: [
+      "Backend Developer",
+      "Architected paperless automation system",
+      "Implemented automated ticket processing",
+      "Integrated with central banking systems",
+      "Developed fund transfer orchestration",
+    ],
+  },
+  {
+    id: 3,
+    title: "Dashen Internet Banking System",
+    type: "Digital Banking Platform",
+    isPrivate: true,
+    description: "Comprehensive internet banking solution with third-party payment integrations.",
+    features: [
+      "Enterprise authentication system",
+      "Telebirr wallet integration",
+      "M-Pesa transfer capabilities",
+      "Real-time transaction processing",
+      "Security & fraud detection",
+      "Multi-channel fund transfers",
+    ],
+    image: PROJECT_IMAGES.dashen,
+    objectFit: "contain" as const,
+    tags: ["Node.js", "Express", "TypeScript", "MongoDB", "Third-party APIs", "Payment Gateway"],
+    liveUrl: "#",
+    githubUrl: "#",
+    roles: [
+      "Backend Developer",
+      "Built enterprise authentication system",
+      "Integrated Telebirr wallet services",
+      "Integrated M-Pesa transfer capabilities",
+      "Implemented secure payment processing",
+      "Ensured banking compliance & security",
+    ],
+  },
+  {
+    id: 4,
     title: "Scholarshub",
     type: "Full-stack SaaS",
     description: "A complete system for managing scholarship applicants and agency operations.",
@@ -59,7 +120,7 @@ const projects = [
     githubUrl: "https://github.com/bsrBe/scholarsHub",
   },
   {
-    id: 3,
+    id: 5,
     title: "Reboot Adventures",
     type: "Multi-platform + Telegram Automation",
     description: "Telegram-integrated event registration system with deep platform integration.",
@@ -80,7 +141,7 @@ const projects = [
     samplePassword: "BgFPa5cnS3x25si",
   },
   {
-    id: 4,
+    id: 6,
     title: "Keni's Design",
     type: "Multi-platform + Telegram Automation",
     description: "Telegram-integrated Order acceptance system with deep platform integration.",
@@ -101,7 +162,7 @@ const projects = [
     samplePassword: "securepassword123",
   },
   {
-    id: 5,
+    id: 7,
     title: "BookCompass",
     type: "Enterprise-grade Backend",
     description: "Multi-tenant online book marketplace with complex backend logic.",
@@ -117,7 +178,7 @@ const projects = [
     githubUrl: "https://github.com/bsrBe/BookCompass",
   },
   {
-    id: 6,
+    id: 8,
     title: "Proforma Invoice System",
     type: "Desktop Application",
     description: "Offline-first desktop system for generating and managing proforma invoices.",
@@ -133,7 +194,7 @@ const projects = [
     githubUrl: "https://github.com/bsrBe/Proforma.git",
   },
   {
-    id: 7,
+    id: 9,
     title: "Comfy Journal",
     type: "Personal Mood & Diary Platform",
     description: "User-centric app for mood tracking and personal journaling with real-time sync.",
@@ -148,7 +209,7 @@ const projects = [
     githubUrl: "https://github.com/bsrBe/Vent",
   },
   {
-    id: 8,
+    id: 10,
     title: "JS Auth Starter",
     type: "Reusable Auth Boilerplate",
     description: "A fully built backend starter with advanced security and RBAC.",
@@ -163,7 +224,7 @@ const projects = [
     githubUrl: "https://github.com/bsrBe/Mern-Auth",
   },
   {
-    id: 9,
+    id: 11,
     title: "Lersha Auth Service",
     type: "Internal Authorization Service",
     isPrivate: true,
@@ -235,6 +296,21 @@ export default function Projects() {
                 </CardHeader>
                 <CardContent className="space-y-4 flex-grow">
                   <CardDescription className="text-sm line-clamp-2">{project.description}</CardDescription>
+
+                  {project.roles && (
+                    <div className="mt-3 p-2.5 rounded-md bg-primary/5 border border-primary/10">
+                      <p className="text-[11px] font-semibold text-primary uppercase tracking-wider mb-2">My Roles & Contributions:</p>
+                      <ul className="space-y-1.5">
+                        {project.roles.map((role, i) => (
+                          <li key={i} className="text-[10px] flex items-start text-muted-foreground">
+                            <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1 mr-2" />
+                            <span>{role}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
                   <ul className="space-y-1.5">
                     {project.features.slice(0, 3).map((feature, i) => (
                       <li key={i} className="text-xs flex items-center text-muted-foreground">
@@ -299,4 +375,3 @@ export default function Projects() {
     </section>
   )
 }
-
