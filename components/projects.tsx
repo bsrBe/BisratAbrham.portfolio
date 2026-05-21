@@ -21,7 +21,7 @@ const PROJECT_IMAGES = {
   kenis: "/kenis.png",
 }
 
-const projects = [
+const dashenProjects = [
   {
     id: 1,
     title: "Dashen Branch Portal",
@@ -103,6 +103,9 @@ const projects = [
       "Ensured banking compliance & security",
     ],
   },
+]
+
+const otherProjects = [
   {
     id: 4,
     title: "Scholarshub",
@@ -239,6 +242,105 @@ const projects = [
   },
 ]
 
+function ProjectCard({ project }: { project: (typeof dashenProjects)[0] | (typeof otherProjects)[0] }) {
+  return (
+    <Card className="h-full overflow-hidden group border-primary/10 hover:border-primary/30 transition-all duration-300 flex flex-col">
+      <div className="relative h-48 overflow-hidden">
+        <Image
+          src={project.image || "/placeholder.svg"}
+          alt={project.title}
+          fill
+          className={cn(
+            "object-cover transition-transform duration-500 group-hover:scale-105",
+            project.objectFit === "contain" && "object-contain bg-muted p-4"
+          )}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+        <div className="absolute top-4 left-4">
+          <Badge variant="default" className="bg-primary/90">
+            {project.type}
+          </Badge>
+        </div>
+      </div>
+      <CardHeader className="pb-2">
+        <CardTitle className="text-xl">{project.title}</CardTitle>
+        <div className="flex flex-wrap gap-1.5 mt-2">
+          {project.tags.map((tag) => (
+            <Badge key={tag} variant="secondary" className="font-xs opacity-80">
+              {tag}
+            </Badge>
+          ))}
+        </div>
+      </CardHeader>
+      <CardContent className="space-y-4 flex-grow">
+        <CardDescription className="text-sm line-clamp-2">{project.description}</CardDescription>
+
+        {project.roles && (
+          <div className="mt-3 p-2.5 rounded-md bg-primary/5 border border-primary/10">
+            <p className="text-[11px] font-semibold text-primary uppercase tracking-wider mb-2">My Roles & Contributions:</p>
+            <ul className="space-y-1.5">
+              {project.roles.map((role, i) => (
+                <li key={i} className="text-[10px] flex items-start text-muted-foreground">
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1 mr-2" />
+                  <span>{role}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <ul className="space-y-1.5">
+          {project.features.slice(0, 3).map((feature, i) => (
+            <li key={i} className="text-xs flex items-center text-muted-foreground">
+              <CheckCircle2 className="h-3 w-3 mr-2 text-primary shrink-0" />
+              <span className="truncate">{feature}</span>
+            </li>
+          ))}
+        </ul>
+
+        {(project.sampleEmail || project.samplePassword) && (
+          <div className="mt-4 p-2.5 rounded-md bg-primary/5 border border-primary/10 text-[10px] space-y-1">
+            <p className="font-semibold text-primary uppercase tracking-wider">Sample Admin Access:</p>
+            <div className="flex justify-between items-center text-muted-foreground">
+              <span>Email: <span className="text-foreground select-all">{project.sampleEmail}</span></span>
+            </div>
+            <div className="flex justify-between items-center text-muted-foreground">
+              <span>Pass: <span className="text-foreground select-all">{project.samplePassword}</span></span>
+            </div>
+          </div>
+        )}
+      </CardContent>
+      <CardFooter className="pt-0 pb-6">
+        {project.isPrivate ? (
+          <div className="w-full">
+            <Badge variant="outline" className="w-full justify-center py-2 text-sm border-primary/20 bg-primary/5 text-primary">
+              Enterprise Project (Code Private)
+            </Badge>
+          </div>
+        ) : (
+          <div className="flex gap-3 w-full">
+            <Button asChild size="sm" variant="outline" className="flex-1">
+              <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                {project.githubLabel && project.githubLabel.includes("Portal") ? (
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                ) : (
+                  <Github className="h-4 w-4 mr-2" />
+                )}
+                {project.githubLabel || "Code"}
+              </Link>
+            </Button>
+            <Button asChild size="sm" className="flex-1">
+              <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="h-4 w-4 mr-2" /> {project.liveLabel || "View"}
+              </Link>
+            </Button>
+          </div>
+        )}
+      </CardFooter>
+    </Card>
+  )
+}
+
 export default function Projects() {
   return (
     <section id="projects" className="py-20 bg-muted/30">
@@ -257,111 +359,56 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Card className="h-full overflow-hidden group border-primary/10 hover:border-primary/30 transition-all duration-300 flex flex-col">
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    fill
-                    className={cn(
-                      "object-cover transition-transform duration-500 group-hover:scale-105",
-                      project.objectFit === "contain" && "object-contain bg-muted p-4"
-                    )}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-                  <div className="absolute top-4 left-4">
-                    <Badge variant="default" className="bg-primary/90">
-                      {project.type}
-                    </Badge>
-                  </div>
-                </div>
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-xl">{project.title}</CardTitle>
-                  <div className="flex flex-wrap gap-1.5 mt-2">
-                    {project.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary" className="font-xs opacity-80">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-4 flex-grow">
-                  <CardDescription className="text-sm line-clamp-2">{project.description}</CardDescription>
+        {/* Dashen Enterprise Ecosystem Group */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-16"
+        >
+          <div className="mb-6 pl-4 border-l-4 border-primary">
+            <h3 className="text-2xl font-bold mb-2">Dashen Bank Enterprise Ecosystem</h3>
+            <p className="text-muted-foreground">
+              Led backend architecture across multiple financial systems serving 700+ branches and millions of users across Ethiopia.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {dashenProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="border-l-4 border-primary/50 pl-0"
+              >
+                <ProjectCard project={project} />
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
 
-                  {project.roles && (
-                    <div className="mt-3 p-2.5 rounded-md bg-primary/5 border border-primary/10">
-                      <p className="text-[11px] font-semibold text-primary uppercase tracking-wider mb-2">My Roles & Contributions:</p>
-                      <ul className="space-y-1.5">
-                        {project.roles.map((role, i) => (
-                          <li key={i} className="text-[10px] flex items-start text-muted-foreground">
-                            <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1 mr-2" />
-                            <span>{role}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  <ul className="space-y-1.5">
-                    {project.features.slice(0, 3).map((feature, i) => (
-                      <li key={i} className="text-xs flex items-center text-muted-foreground">
-                        <CheckCircle2 className="h-3 w-3 mr-2 text-primary shrink-0" />
-                        <span className="truncate">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {(project.sampleEmail || project.samplePassword) && (
-                    <div className="mt-4 p-2.5 rounded-md bg-primary/5 border border-primary/10 text-[10px] space-y-1">
-                      <p className="font-semibold text-primary uppercase tracking-wider">Sample Admin Access:</p>
-                      <div className="flex justify-between items-center text-muted-foreground">
-                        <span>Email: <span className="text-foreground select-all">{project.sampleEmail}</span></span>
-                      </div>
-                      <div className="flex justify-between items-center text-muted-foreground">
-                        <span>Pass: <span className="text-foreground select-all">{project.samplePassword}</span></span>
-                      </div>
-                    </div>
-                  )}
-                </CardContent>
-                <CardFooter className="pt-0 pb-6">
-                  {project.isPrivate ? (
-                    <div className="w-full">
-                      <Badge variant="outline" className="w-full justify-center py-2 text-sm border-primary/20 bg-primary/5 text-primary">
-                        Enterprise Project (Code Private)
-                      </Badge>
-                    </div>
-                  ) : (
-                    <div className="flex gap-3 w-full">
-                      <Button asChild size="sm" variant="outline" className="flex-1">
-                        <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                          {project.githubLabel && project.githubLabel.includes("Portal") ? (
-                            <ExternalLink className="h-4 w-4 mr-2" />
-                          ) : (
-                            <Github className="h-4 w-4 mr-2" />
-                          )}
-                          {project.githubLabel || "Code"}
-                        </Link>
-                      </Button>
-                      <Button asChild size="sm" className="flex-1">
-                        <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4 mr-2" /> {project.liveLabel || "View"}
-                        </Link>
-                      </Button>
-                    </div>
-                  )}
-                </CardFooter>
-              </Card>
-            </motion.div>
-          ))}
+        {/* Other Projects */}
+        <div>
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold mb-2">Other Projects</h3>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {otherProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <ProjectCard project={project} />
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         <div className="text-center mt-12">
