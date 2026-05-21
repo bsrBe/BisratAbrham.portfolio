@@ -11,8 +11,6 @@ This is a Next.js-based portfolio website that highlights professional projects,
 - **Frontend:** Next.js, React, TypeScript
 - **Styling:** Tailwind CSS, Shadcn/ui Components
 - **Animations:** Framer Motion
-- **Database:** MongoDB (for project data)
-- **Server Runtime:** Node.js with Express
 - **Development:** TypeScript for type safety
 
 ## 📁 Project Structure
